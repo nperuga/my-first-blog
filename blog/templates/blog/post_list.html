@@ -1,44 +1,13 @@
-{% load static %}
-<html>
-    <head>
-      <title> El blog de nperuga </title>
-      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-      <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-      <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-    </head>
-    <body>
-        <div class="page-header">
-            <h1><strong><a href="/">El blog de nperuga</a></strong></h1>
-        </div>
+{% extends 'blog/base.html' %}
 
-
-        <div class="presentation">
-          <h2><a href="">Presentación</a></h2>
-          <p>Me llamo Nerea y tengo 26 años. Me gradué en Educación Infantil y Priaria en el año 2018, pero a finales del 2020 empecé a interesarme por el mundo de la programación y el desarrollo de aplicaciones/webs.</p>
-          <br>
-          <p>He creado este blog siguiendo el tutorial de DjangoGirls, a través del cual estoy aprendiendo a programar con Python y a montar una página web. Empezaré publicando los apuntes que me he ido haciendo mientras seguía el tutorial, así se podrán consultar en cualquier momento.</p>
-          <br>
-        </div>
-
-        <div>
-            <h2><a href="">Apuntes</a></h2>
-            <br>
-
-            <div class="content container">
-              <div class="row">
-                <div class="col-md-8">
-                  {% for post in posts %}
-                    <div class="post">
-                      <div class="date">
-                        <p>publicado: {{ post.published_date }}</p>
-                      </div>
-                      <h2><a href="">{{ post.title }}</a></h2>
-                      <p>{{ post.text|linebreaksbr }}</p>
-                    </div>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-            </body>
-</html>
+{% block content %}
+  {% for post in posts %}
+    <div class="post">
+      <div class="date">
+      <p>{{ post.published_date }}</p>
+      </div>
+      <h2><a href="">{{ post.title }}</a></h2>
+      <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+    {% endfor %}
+{% endblock %}
